@@ -1,25 +1,46 @@
 
+
 services:
-
-#demo service 
-
-
-
-
-
-
-
-
-
-#ops-agent
-
-  demo-app:
+  # 1. Backend Application
+  backend:
     build: 
-      context: .
+      context: ./backend/demo-service
       dockerfile: Dockerfile
-    container_name: nextjs-demo
+    container_name: backend-app
+    ports:
+      - "5000:5000"
+    # Points to the .env file inside the backend folder
+    env_file: 
+      - ./backend/demo-service/.env
+    restart: unless-stopped
+
+  # 2. Ops Agent
+  ops-agent:
+    build: 
+      context: ./ops-agent
+      dockerfile: Dockerfile
+    container_name: ops-agent
     ports:
       - "3000:3000"
+    # Points to the .env file inside the ops-agent folder
+    env_file: 
+      - ./ops-agent/.env
     environment:
-      - NODE_ENV=production
+      # You can still hardcode variables here if needed, like the DB connection
+      - MONGO_URI=mongodb://mongodb:27017/opsagent_db
+    depends_on:
+      - mongodb
     restart: unless-stopped
+
+  # 3. MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: ops-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

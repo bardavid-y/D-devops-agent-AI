@@ -1,9 +1,19 @@
 import { Agent, setDefaultOpenAIKey } from "@openai/agents";
+//try an ollam on my computer 
+import { OpenAI } from "openai";
+//------------
+
 import { check_service_health, get_prodaction_info, get_recent_logs } from "./tools";
 
+// יצירת קליינט המצביע לשרת המקומי של Ollama
+const ollamaClient = new OpenAI({
+  baseURL: "http://host.docker.internal:11434/v1/",
+  apiKey: "ollama", // שדה חובה ב-SDK, אך Ollama פשוט מתעלם ממנו
+});
 
 if(process.env.OPEN_AI_KEY){
-setDefaultOpenAIKey(process.env.OPENAI_API_KEY);
+// setDefaultOpenAIKey(process.env.OPENAI_API_KEY);
+setDefaultOpenAIClient(ollamaClient);
 }
 
 export const Opsagent = new Agent({
