@@ -50,7 +50,11 @@ export default function HomePage() {
       ))}
     <h2>Report</h2> 
     {error && <p>{error}</p>}
-    <p>{report}</p> 
+    {/* Add whitespace-pre-wrap so the newlines (\n) work properly! */}
+    <p className="whitespace-pre-wrap">{report}</p>
+    
+    {/* {error && <p>{error}</p>}
+    <p>{report}</p>  */}
     </main>
   );
 }
