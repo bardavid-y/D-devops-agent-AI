@@ -45,7 +45,7 @@ Answer in english with exacly 4 sections:
   Next Steps:
 
 `,
-  model: "llama3.2",
+  model: "qwen2.5",
   tools: [check_service_health, get_recent_logs, get_prodaction_info],
 });
 
