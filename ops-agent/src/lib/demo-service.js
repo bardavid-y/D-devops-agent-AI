@@ -1,4 +1,4 @@
-const BASE_URL = process.env.DEMO_SERVICE_URL || "http://localhost:3000";
+const BASE_URL = process.env.const_BASE_URL || "http://backend:5000";
 
 
 export async function callDemoService(path) {
