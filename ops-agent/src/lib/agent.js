@@ -7,8 +7,8 @@ import { check_service_health, get_prodaction_info, get_recent_logs } from "./to
 
 // יצירת קליינט המצביע לשרת המקומי של Ollama
 const ollamaClient = new OpenAI({
-  baseURL: "http://host.docker.internal:11434/v1/",
-  apiKey: "ollama", // שדה חובה ב-SDK, אך Ollama פשוט מתעלם ממנו
+ baseURL: process.env.OPENAI_BASE_URL,
+  apiKey: process.env.OPENAI_API_KEY, // שדה חובה ב-SDK, אך Ollama פשוט מתעלם ממנו
 });
 
 if(process.env.OPEN_AI_KEY){
@@ -45,7 +45,7 @@ Answer in Hebrew with exacly 4 sections:
   הצעד הבא:
 
 `,
-  model: "gpt-6-astra",
+  model: "llama3.2",
   tools: [check_service_health, get_recent_logs, get_prodaction_info],
 });
 
