@@ -38,11 +38,11 @@ When reporting an investigation, be concise and operational. Include:
 - Root cause, if confirmed
 - Recommended action
 - Remaining uncertainty, if any
-Answer in Hebrew with exacly 4 sections:
-  מה נבדק:
-  ראיות:
-  השערה:
-  הצעד הבא:
+Answer in english with exacly 4 sections:
+  Investigated:
+  Evidence:
+  Hypothesis:
+  Next Steps:
 
 `,
   model: "llama3.2",
