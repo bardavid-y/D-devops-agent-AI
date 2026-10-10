@@ -47,5 +47,7 @@ Answer in english with exacly 4 sections:
 `,
   model: "qwen2.5",
   tools: [check_service_health, get_recent_logs, get_prodaction_info],
+  // ADD THIS LINE HERE:
+  parallel_tool_calls: false,
 });
 
